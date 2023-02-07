@@ -2,7 +2,7 @@ import 'dart:html';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:hackathon/screens/product_screen.dart';
+import 'package:hackathon/screens/login_screen.dart';
 import 'package:hackathon/utils/color_constant.dart';
 import 'package:hackathon/utils/image_constant.dart';
 import 'package:hackathon/utils/text_constant.dart';
@@ -11,10 +11,12 @@ import 'package:hackathon/widgets/sentence.dart';
 import 'package:hackathon/widgets/text.dart';
 import 'package:hackathon/widgets/textfield.dart';
 
-class SignUp_Page extends StatelessWidget {
+import '../widgets/have_account_text.dart';
+
+class SignUpPage extends StatelessWidget {
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
-  SignUp_Page({super.key});
+  SignUpPage({super.key});
 
   signup(context) async {
     try {
@@ -108,11 +110,21 @@ class SignUp_Page extends StatelessWidget {
             height: 30,
           ),
           MyButtons(
-              buttonText: MyText.buttonText2,
+              buttonText: MyText.signUp,
               onTapFunction: () {
                 signup(context);
                 // Navigator.push(context,
                 //     MaterialPageRoute(builder: (context) => ProductScreen()));
+              }),
+          const SizedBox(
+            height: 5,
+          ),
+          HaveAccountText(
+              text1: "Already have account",
+              text2: "Sign in",
+              onTapFunction: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => LoginPage()));
               })
         ],
       ),

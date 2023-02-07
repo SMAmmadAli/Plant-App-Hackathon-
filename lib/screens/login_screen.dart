@@ -1,9 +1,14 @@
+import 'dart:ui';
+
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:hackathon/screens/product_screen.dart';
 import 'package:hackathon/screens/signup_screen.dart';
 import 'package:hackathon/utils/color_constant.dart';
 import 'package:hackathon/utils/image_constant.dart';
 import 'package:hackathon/utils/text_constant.dart';
 import 'package:hackathon/widgets/buttons.dart';
+import 'package:hackathon/widgets/have_account_text.dart';
 import 'package:hackathon/widgets/sentence.dart';
 import 'package:hackathon/widgets/text.dart';
 import 'package:hackathon/widgets/textfield.dart';
@@ -12,6 +17,25 @@ class LoginPage extends StatelessWidget {
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
   LoginPage({super.key});
+
+  login(context) async {
+    try {
+      final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: email.text,
+        password: password.text,
+      );
+      Navigator.pushReplacement(context,
+          MaterialPageRoute(builder: (context) => const ProductScreen()));
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'weak-password') {
+        print('The password provided is too weak.');
+      } else if (e.code == 'email-already-in-use') {
+        print('The account already exists for that email.');
+      }
+    } catch (e) {
+      print(e);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -80,11 +104,21 @@ class LoginPage extends StatelessWidget {
             height: 30,
           ),
           MyButtons(
-              buttonText: MyText.buttonText2,
+              buttonText: MyText.login,
               onTapFunction: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => SignUp_Page()));
-              })
+                login(context);
+              }),
+          const SizedBox(
+            height: 5,
+          ),
+          HaveAccountText(
+            text1: "Don\'t have account?",
+            text2: "Sign up",
+            onTapFunction: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => SignUpPage()));
+            },
+          )
         ],
       ),
     );
