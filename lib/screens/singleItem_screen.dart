@@ -360,7 +360,7 @@ class _SingleItemScreenState extends State<SingleItemScreen> {
                 child: ListView(
                   scrollDirection: Axis.horizontal,
                   children: [
-                    for (Map j in products)
+                    for (Map j in myProducts)
                       Image(
                         image: AssetImage(j["image"]),
                         fit: BoxFit.contain,

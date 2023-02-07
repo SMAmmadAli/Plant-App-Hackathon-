@@ -2,7 +2,7 @@ import 'package:hackathon/utils/color_constant.dart';
 import 'package:hackathon/utils/image_constant.dart';
 import 'package:hackathon/utils/text_constant.dart';
 
-List<Map> products = [
+List<Map> myProducts = [
   {
     "name": "Peperomia",
     "type": MyText.airPurifier,
