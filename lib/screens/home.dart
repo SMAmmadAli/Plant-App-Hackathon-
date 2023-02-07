@@ -24,6 +24,7 @@ class HomePage extends StatelessWidget {
               image: AssetImage(
                 MyImage.homeImage,
               ),
+              fit: BoxFit.fill,
               width: MediaQuery.of(context).size.height * 1,
             ),
           ),

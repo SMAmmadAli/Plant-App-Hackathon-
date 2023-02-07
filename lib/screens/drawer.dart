@@ -10,6 +10,7 @@ class MyDrawer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         elevation: 0,
         backgroundColor: MyColor.dartGreen,
         actions: [
@@ -36,7 +37,7 @@ class MyDrawer extends StatelessWidget {
               title: Text(
                 "Shop",
                 style: TextStyle(
-                  fontSize: 22,
+                  fontSize: 18,
                   fontWeight: FontWeight.w600,
                   color: MyColor.white,
                 ),
@@ -51,7 +52,7 @@ class MyDrawer extends StatelessWidget {
               title: Text(
                 "Plant Care",
                 style: TextStyle(
-                  fontSize: 22,
+                  fontSize: 18,
                   fontWeight: FontWeight.w600,
                   color: MyColor.white,
                 ),
@@ -66,7 +67,7 @@ class MyDrawer extends StatelessWidget {
               title: Text(
                 "My Account",
                 style: TextStyle(
-                  fontSize: 22,
+                  fontSize: 18,
                   fontWeight: FontWeight.w600,
                   color: MyColor.white,
                 ),
@@ -81,20 +82,20 @@ class MyDrawer extends StatelessWidget {
               title: Text(
                 "Track Order",
                 style: TextStyle(
-                  fontSize: 22,
+                  fontSize: 18,
                   fontWeight: FontWeight.w600,
                   color: MyColor.white,
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Center(
               child: Text(
                 "Get the dirt.",
                 style: TextStyle(
-                  fontSize: 20,
+                  fontSize: 18,
                   fontWeight: FontWeight.w700,
                   color: MyColor.white,
                 ),
@@ -103,43 +104,43 @@ class MyDrawer extends StatelessWidget {
             const SizedBox(
               height: 20,
             ),
-            MyButtons(
+            const MyButtons(
               buttonText: "Enter your Email",
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Center(
               child: Text(
                 "FAQ",
                 style: TextStyle(
-                  fontSize: 20,
+                  fontSize: 16,
                   fontWeight: FontWeight.w700,
                   color: MyColor.white,
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Center(
               child: Text(
                 "About US",
                 style: TextStyle(
-                  fontSize: 20,
+                  fontSize: 16,
                   fontWeight: FontWeight.w700,
                   color: MyColor.white,
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Center(
               child: Text(
                 "Contact Us",
                 style: TextStyle(
-                  fontSize: 20,
+                  fontSize: 16,
                   fontWeight: FontWeight.w700,
                   color: MyColor.white,
                 ),

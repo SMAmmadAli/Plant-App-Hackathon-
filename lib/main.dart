@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:hackathon/screens/final_screen.dart';
 import 'package:hackathon/screens/home.dart';
-import 'package:hackathon/screens/login_screen.dart';
 import 'package:hackathon/screens/product_screen.dart';
-import 'package:hackathon/screens/signup_screen.dart';
 import 'package:hackathon/screens/singleItem_screen.dart';
 
 void main(List<String> args) {
@@ -16,7 +15,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: ProductScreen(),
+      home: HomePage(),
     );
   }
 }

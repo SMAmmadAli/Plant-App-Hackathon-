@@ -1,10 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hackathon/data/data.dart';
+import 'package:hackathon/screens/addtocart.dart';
 import 'package:hackathon/utils/color_constant.dart';
 import 'package:hackathon/utils/image_constant.dart';
-import 'package:hackathon/widgets/drawer.dart';
+import 'package:hackathon/utils/text_constant.dart';
+import 'package:hackathon/screens/drawer.dart';
 import 'package:hackathon/widgets/listview.dart';
+import 'package:hackathon/widgets/listview_text.dart';
 
 class ProductScreen extends StatefulWidget {
   const ProductScreen({super.key});
@@ -25,7 +28,7 @@ class _ProductScreenState extends State<ProductScreen>
         backgroundColor: MyColor.white,
         leading: Image(image: AssetImage(MyImage.tree)),
         title: Text(
-          'Plantify',
+          MyText.plantify,
           style: TextStyle(
               fontWeight: FontWeight.w700,
               fontSize: 20,
@@ -33,17 +36,22 @@ class _ProductScreenState extends State<ProductScreen>
               color: MyColor.blue),
         ),
         actions: [
-          Icon(
-            CupertinoIcons.bell,
-            color: MyColor.blue,
-          ),
+          IconButton(
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => AddToCart()));
+              },
+              icon: Icon(
+                CupertinoIcons.bell,
+                color: MyColor.blue,
+              )),
           const SizedBox(
             width: 8,
           ),
           IconButton(
               onPressed: () {
-                Navigator.pushReplacement(context,
-                    MaterialPageRoute(builder: (context) => MyDrawer()));
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => const MyDrawer()));
               },
               icon: Icon(
                 CupertinoIcons.line_horizontal_3,
@@ -56,10 +64,16 @@ class _ProductScreenState extends State<ProductScreen>
       ),
       body: SingleChildScrollView(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
+              margin: const EdgeInsets.symmetric(horizontal: 5),
               width: MediaQuery.of(context).size.width * 1,
               height: MediaQuery.of(context).size.height * 0.3,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  image: DecorationImage(
+                      image: AssetImage(MyImage.girl), fit: BoxFit.fill)),
               child: Padding(
                 padding: const EdgeInsets.only(top: 20.0, left: 10),
                 child: Column(
@@ -100,9 +114,6 @@ class _ProductScreenState extends State<ProductScreen>
                   ],
                 ),
               ),
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  image: DecorationImage(image: AssetImage(MyImage.girl))),
             ),
             Padding(
               padding: const EdgeInsets.only(top: 20.0, left: 10),
@@ -146,44 +157,59 @@ class _ProductScreenState extends State<ProductScreen>
                 ],
               ),
             ),
-            TabBar(
-                indicatorColor: MyColor.blue,
-                controller: tabController,
-                isScrollable: true,
-                labelPadding: const EdgeInsets.symmetric(horizontal: 20),
-                tabs: [
-                  Tab(
-                    child: Text(
-                      'Top Pick',
-                      style: TextStyle(color: MyColor.green),
+            Container(
+              child: TabBar(
+                  indicatorColor: MyColor.blue,
+                  controller: tabController,
+                  isScrollable: true,
+                  labelPadding: const EdgeInsets.symmetric(horizontal: 20),
+                  tabs: [
+                    Tab(
+                      child: Text(
+                        'Top Pick',
+                        style: TextStyle(color: MyColor.green),
+                      ),
                     ),
-                  ),
-                  Tab(
-                    child: Text(
-                      'Indoor',
-                      style: TextStyle(color: MyColor.blue),
+                    Tab(
+                      child: Text(
+                        'Indoor',
+                        style: TextStyle(color: MyColor.blue),
+                      ),
                     ),
-                  ),
-                  Tab(
-                    child: Text(
-                      'Outdoor',
-                      style: TextStyle(color: MyColor.blue),
+                    Tab(
+                      child: Text(
+                        'Outdoor',
+                        style: TextStyle(color: MyColor.blue),
+                      ),
                     ),
-                  ),
-                  Tab(
-                    child: Text(
-                      'Seeds',
-                      style: TextStyle(color: MyColor.blue),
+                    Tab(
+                      child: Text(
+                        'Seeds',
+                        style: TextStyle(color: MyColor.blue),
+                      ),
                     ),
-                  ),
-                  Tab(
-                    child: Text(
-                      'Planters',
-                      style: TextStyle(color: MyColor.blue),
+                    Tab(
+                      child: Text(
+                        'Planters',
+                        style: TextStyle(color: MyColor.blue),
+                      ),
                     ),
-                  ),
-                ]),
-            Expanded(child: MyBuilder()),
+                  ]),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 10),
+              child: Expanded(
+                child: Container(
+                  child: MyBuilder(),
+                ),
+              ),
+            ),
+            ListViewText(text: MyText.text1),
+            ListViewText(text: MyText.text2),
+            ListViewText(text: MyText.text3),
+            const SizedBox(
+              height: 20,
+            )
           ],
         ),
       ),
