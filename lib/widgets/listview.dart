@@ -21,7 +21,7 @@ class _MyBuilderState extends State<MyBuilder> {
       child: ListView.builder(
           physics: NeverScrollableScrollPhysics(),
           shrinkWrap: true,
-          itemCount: products.length,
+          itemCount: myProducts.length,
           itemBuilder: (context, index) {
             if (index == 2) {
               return Container(
@@ -45,7 +45,7 @@ class _MyBuilderState extends State<MyBuilder> {
                   children: [
                     InkWell(
                       onTap: () {
-                        addItem.add(products[index]);
+                        addItem.add(myProducts[index]);
                         Navigator.push(
                             context,
                             MaterialPageRoute(
@@ -57,7 +57,7 @@ class _MyBuilderState extends State<MyBuilder> {
                         width: MediaQuery.of(context).size.width * 0.86,
                         height: MediaQuery.of(context).size.width * 0.6,
                         decoration: BoxDecoration(
-                          color: products[index]['color'],
+                          color: myProducts[index]['color'],
                           borderRadius: BorderRadius.circular(25),
                           border:
                               Border.all(color: MyColor.dartGreen, width: 1),
@@ -71,7 +71,7 @@ class _MyBuilderState extends State<MyBuilder> {
                                 Padding(
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 20, vertical: 8),
-                                  child: Text(products[index]["type"],
+                                  child: Text(myProducts[index]["type"],
                                       style: TextStyle(
                                           fontSize: 16,
                                           fontWeight: FontWeight.w600,
@@ -85,7 +85,7 @@ class _MyBuilderState extends State<MyBuilder> {
                             ),
                             Padding(
                               padding: const EdgeInsets.only(left: 20.0),
-                              child: Text(products[index]['name'],
+                              child: Text(myProducts[index]['name'],
                                   style: TextStyle(
                                       fontSize: 24,
                                       fontWeight: FontWeight.w700,
@@ -100,7 +100,7 @@ class _MyBuilderState extends State<MyBuilder> {
                                 Padding(
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 20, vertical: 10),
-                                  child: Text(products[index]["price"],
+                                  child: Text(myProducts[index]["price"],
                                       style: TextStyle(
                                           fontSize: 18,
                                           fontWeight: FontWeight.w600,
@@ -108,16 +108,17 @@ class _MyBuilderState extends State<MyBuilder> {
                                 ),
                                 IconButton(
                                     onPressed: () {
-                                      favItem.add(products[index]);
-                                      if (!products[index]['isfavourite']) {
+                                      favItem.add(myProducts[index]);
+                                      if (!myProducts[index]['isfavourite']) {
                                         // favouriteproduct.add(products[index]);
                                         setState(() {
-                                          products[index]['isfavourite'] = true;
+                                          myProducts[index]['isfavourite'] =
+                                              true;
                                         });
                                       } else {
-                                        favItem.remove(products[index]);
+                                        favItem.remove(myProducts[index]);
                                         setState(() {
-                                          products[index]['isfavourite'] =
+                                          myProducts[index]['isfavourite'] =
                                               false;
                                         });
                                       }
@@ -125,10 +126,10 @@ class _MyBuilderState extends State<MyBuilder> {
                                     icon: Icon(
                                       CupertinoIcons.heart_fill,
                                       size: 30,
-                                      color:
-                                          products[index]["isfavourite"] == true
-                                              ? Colors.red
-                                              : MyColor.blue,
+                                      color: myProducts[index]["isfavourite"] ==
+                                              true
+                                          ? Colors.red
+                                          : MyColor.blue,
                                     )),
                                 IconButton(
                                     onPressed: () {
@@ -153,7 +154,7 @@ class _MyBuilderState extends State<MyBuilder> {
                         right: -40,
                         bottom: 10,
                         child: Image(
-                          image: AssetImage(products[index]['image']),
+                          image: AssetImage(myProducts[index]['image']),
                           width: 170,
                           height: 170,
                         )),
