@@ -1,3 +1,6 @@
+import 'dart:html';
+
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:hackathon/screens/product_screen.dart';
 import 'package:hackathon/utils/color_constant.dart';
@@ -9,7 +12,34 @@ import 'package:hackathon/widgets/text.dart';
 import 'package:hackathon/widgets/textfield.dart';
 
 class SignUp_Page extends StatelessWidget {
-  const SignUp_Page({super.key});
+  TextEditingController email = TextEditingController();
+  TextEditingController password = TextEditingController();
+  SignUp_Page({super.key});
+
+  signup(context) async {
+    try {
+      final credential = await FirebaseAuth.instance
+          .createUserWithEmailAndPassword(
+              email: email.text, password: password.text);
+      Navigator.pop(context);
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'weak-password') {
+        // print('The password provided is too weak.');
+        return const AlertDialog(
+          title: Text("The password provided is too weak."),
+          actions: [Text("Skip")],
+        );
+      } else if (e.code == 'email-already-in-use') {
+        // print('The account already exists for that email.');
+        return const AlertDialog(
+          title: Text("The account already exists for that email."),
+          actions: [Text("Skip")],
+        );
+      }
+    } catch (e) {
+      print(e);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -61,16 +91,18 @@ class SignUp_Page extends StatelessWidget {
           const SizedBox(
             height: 30,
           ),
-          const MyTextField(
-            text: "NISN",
-            ObscureText: false,
+          MyTextField(
+            text: "Email",
+            obscureText: false,
+            myController: email,
           ),
           const SizedBox(
             height: 20,
           ),
-          const MyTextField(
-            text: "NISN",
-            ObscureText: true,
+          MyTextField(
+            text: "Password",
+            obscureText: true,
+            myController: password,
           ),
           const SizedBox(
             height: 30,
@@ -78,8 +110,9 @@ class SignUp_Page extends StatelessWidget {
           MyButtons(
               buttonText: MyText.buttonText2,
               onTapFunction: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => ProductScreen()));
+                signup(context);
+                // Navigator.push(context,
+                //     MaterialPageRoute(builder: (context) => ProductScreen()));
               })
         ],
       ),

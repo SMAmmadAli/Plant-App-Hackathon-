@@ -4,8 +4,13 @@ import '../utils/color_constant.dart';
 
 class MyTextField extends StatelessWidget {
   final String text;
-  final bool ObscureText;
-  const MyTextField({super.key, required this.text, required this.ObscureText});
+  final bool obscureText;
+  final TextEditingController myController;
+  const MyTextField(
+      {super.key,
+      required this.text,
+      required this.obscureText,
+      required this.myController});
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +38,8 @@ class MyTextField extends StatelessWidget {
               borderRadius: BorderRadius.circular(10),
               border: Border.all(color: MyColor.green, width: 1)),
           child: TextField(
-            obscureText: ObscureText,
+            controller: myController,
+            obscureText: obscureText,
             decoration: InputDecoration(
                 border: InputBorder.none,
                 hintText: "Masukkan Password",

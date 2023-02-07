@@ -1,10 +1,14 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:hackathon/screens/final_screen.dart';
 import 'package:hackathon/screens/home.dart';
-import 'package:hackathon/screens/product_screen.dart';
-import 'package:hackathon/screens/singleItem_screen.dart';
 
-void main(List<String> args) {
+import 'firebase_options.dart';
+
+void main(List<String> args) async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(MyApp());
 }
 

@@ -3,8 +3,6 @@ import 'package:hackathon/utils/color_constant.dart';
 import 'package:hackathon/utils/image_constant.dart';
 import 'package:hackathon/widgets/buttons.dart';
 
-import '../data/data.dart';
-
 class FinalScreen extends StatelessWidget {
   const FinalScreen({super.key});
 
@@ -71,7 +69,7 @@ class FinalScreen extends StatelessWidget {
           const SizedBox(
             height: 5,
           ),
-          Center(child: MyButtons(buttonText: "KIRIM"))
+          const Center(child: MyButtons(buttonText: "KIRIM"))
         ],
       ),
     );

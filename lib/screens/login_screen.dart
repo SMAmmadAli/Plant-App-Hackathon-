@@ -9,7 +9,9 @@ import 'package:hackathon/widgets/text.dart';
 import 'package:hackathon/widgets/textfield.dart';
 
 class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
+  TextEditingController email = TextEditingController();
+  TextEditingController password = TextEditingController();
+  LoginPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -63,14 +65,16 @@ class LoginPage extends StatelessWidget {
           ),
           MyTextField(
             text: MyText.email,
-            ObscureText: false,
+            obscureText: false,
+            myController: email,
           ),
           const SizedBox(
             height: 20,
           ),
           MyTextField(
             text: MyText.password,
-            ObscureText: true,
+            obscureText: true,
+            myController: password,
           ),
           const SizedBox(
             height: 30,
