@@ -10,7 +10,7 @@ import 'package:hackathon/widgets/buttons.dart';
 import 'package:hackathon/widgets/sentence.dart';
 import 'package:hackathon/widgets/text.dart';
 import 'package:hackathon/widgets/textfield.dart';
-
+import 'dart:html';
 import '../widgets/have_account_text.dart';
 
 class SignUpPage extends StatelessWidget {
